@@ -56,5 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
         charControl.Move(currentVelocity * Time.deltaTime);
 
+        Vector3 pos = transform.position;
+        pos.z =0;
+        transform.position = pos;
     }
 }
