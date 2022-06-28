@@ -9,19 +9,22 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public float currentHealth;
 
-    private void Start()
+    public void Start()
     {
         currentHealth = maxHealth;
-        if(healthslider != null)
-         healthslider.SetMaxHealth(currentHealth);
+        if (healthslider != null)
+        {
+            healthslider.SetMaxHealth(currentHealth);
+        }
     }
 
-    private void Update()
+    public void Update()
     {
         currentHealth -= Time.deltaTime;
-        if(healthslider != null)
-             healthslider.SetHealth(currentHealth);
-
+        if (healthslider != null)
+        {
+            healthslider.SetHealth(currentHealth);
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -31,15 +34,19 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if(healthslider != null)
-             healthslider.SetHealth(currentHealth);
+        if (healthslider != null)
+        {
+            healthslider.SetHealth(currentHealth);
+        }
     }
 
     public void AddHealth(int health)
     {
         currentHealth += health;
-        if(healthslider != null)
+        if (healthslider != null)
+        {
             healthslider.SetHealth(currentHealth);
+        }
     }
 
     public void Die()

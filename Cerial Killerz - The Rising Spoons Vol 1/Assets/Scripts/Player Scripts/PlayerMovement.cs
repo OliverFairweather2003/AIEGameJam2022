@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     CharacterController charControl;
     float moveInput;
     bool jumpInput = false;
-    Vector3 currentVelocity;
+    public Vector3 currentVelocity;
 
 
     void Awake()
@@ -53,6 +53,14 @@ public class PlayerMovement : MonoBehaviour
 
         Move();
     }
+
+    public void Teleport(Transform direction)
+    {
+        charControl.enabled = false;
+        transform.position = direction.position;
+        charControl.enabled = true;
+    }
+
 
     void Move()
     {
