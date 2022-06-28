@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class BossBehavior : MonoBehaviour
 {
     Rigidbody ridgidBody;
@@ -81,6 +81,8 @@ public class BossBehavior : MonoBehaviour
     void TakeDamageBoss(int damage)
     {
         BossHealth -= damage;
+        if (BossHealth <= 0)
+            SceneManager.LoadScene("Credits");
     }
 
     void Die()
