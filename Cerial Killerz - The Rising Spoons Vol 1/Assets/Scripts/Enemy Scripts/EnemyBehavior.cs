@@ -49,11 +49,11 @@ public class EnemyBehavior : MonoBehaviour
         PlayerHealth PlayerHealth = col.GetComponent < PlayerHealth > ();
         if (PlayerHealth != null)
         {
-            PlayerHealth.TakeDamage(5);
+            PlayerHealth.TakeDamage(10);
         }
         else if(col.tag == "Spoon")
         {
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
 
     }
@@ -69,7 +69,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         CheckHitbox();
         ridgidBody.velocity = direction * speed;
-
 
         Vector3 gravity = Physics.gravity.y * gravityScale * Vector3.up;
         ridgidBody.AddForce(gravity, ForceMode.Acceleration);
