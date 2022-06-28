@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             if (spoonThrow == null)
-                spoonThrow = Instantiate(spoonPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation).GetComponent<SpoonThrow>();
+                return;
+                //spoonThrow = Instantiate(spoonPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation).GetComponent<SpoonThrow>();
 
             spoonThrow.transform.position =  new Vector3(transform.position.x, transform.position.y, transform.position.z);
             spoonThrow.transform.rotation = transform.rotation;
