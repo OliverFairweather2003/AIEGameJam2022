@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour
         
     }
 
+
     void LateUpdate()
     {
         if (target == null)
