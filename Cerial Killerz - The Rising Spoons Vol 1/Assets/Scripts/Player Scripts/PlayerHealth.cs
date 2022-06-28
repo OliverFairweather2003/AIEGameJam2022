@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= Time.deltaTime;
         healthslider.SetHealth(currentHealth);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

@@ -21,46 +21,40 @@ public class EnemyBehavior : MonoBehaviour
     {
         // Draw a red cube at the transform's position
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + (Vector3)hitBoxPosition, new Vector3(hitBoxSize.x, hitBoxSize.y, 0));
+        Gizmos.DrawWireCube(transform.position + (Vector3)hitBoxPosition, new Vector3(hitBoxSize.x, hitBoxSize.y, hitBoxSize.z));
     }
 
-    void CheckHitbox()
+    public void CheckHitbox()
     {
         Collider[] col = Physics.OverlapBox(transform.position + (Vector3)hitBoxPosition, new Vector3(hitBoxSize.x, hitBoxSize.y, 0),Quaternion.identity, layers);
         
         foreach (Collider colItem in col)
         {
             //Debug.Log("ColliderItem " +col.Length);
-            if (colItem.gameObject != gameObject)
+            if (colItem.tag == "Player" || colItem.tag == "Spoon")
             {
-                Debug.Log("Hit Item");
+                CheckDamage(colItem);
+            }
+            else if (colItem.gameObject != gameObject)
+            {
                 direction.x = -direction.x;
             }
-            if (colItem.tag == "Player")
-            {
-                CheckDamage(colItem);
-            }
-            if (colItem.tag == "Spoon")
-            {
-                CheckDamage(colItem);
-            }
+          
         }
     }
 
-    void CheckDamage(Collider col)
+    public void CheckDamage(Collider col)
     {
-        Rigidbody spoonRB = col.GetComponent<Rigidbody>();
-        if (spoonRB != null)
+        PlayerHealth PlayerHealth = col.GetComponent < PlayerHealth > ();
+        if (PlayerHealth != null)
         {
-            if (spoonRB.velocity.y < -0.2f || spoonRB.velocity.x < -0.2f || spoonRB.velocity.y < 0.2f || spoonRB.velocity.x < 0.2f)
-            {
+            PlayerHealth.TakeDamage(5);
+        }
+        else if(col.tag == "Spoon")
+        {
                 Destroy(gameObject);
-            }
         }
-        else
-        {
-           // PlayerHealth playHealth = 0;
-        }
+
     }
 
     // Start is called before the first frame update
