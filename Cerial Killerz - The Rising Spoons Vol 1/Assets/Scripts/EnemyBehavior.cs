@@ -52,10 +52,14 @@ public class EnemyBehavior : MonoBehaviour
         Rigidbody spoonRB = col.GetComponent<Rigidbody>();
         if (spoonRB != null)
         {
-            if (spoonRB.velocity.y < -0.2f, spoonRB.velocity.x < -0.2f, spoonRB.velocity.y < 0.2f, spoonRB.velocity.x < 0.2f)
+            if (spoonRB.velocity.y < -0.2f || spoonRB.velocity.x < -0.2f || spoonRB.velocity.y < 0.2f || spoonRB.velocity.x < 0.2f)
             {
                 Destroy(gameObject);
             }
+        }
+        else
+        {
+           // PlayerHealth playHealth = 0;
         }
     }
 
