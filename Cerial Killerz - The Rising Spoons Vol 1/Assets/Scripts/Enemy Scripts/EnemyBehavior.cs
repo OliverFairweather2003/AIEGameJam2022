@@ -8,7 +8,7 @@ public class EnemyBehavior : MonoBehaviour
     Rigidbody ridgidBody;
 
     Vector2 direction = new Vector3(1, 0,0); //Direction we are heading in
-
+    public float gravityScale = 1.0f;
     public float speed = 5f; //Speed
 
     public Vector3 hitBoxSize;//The hitBox Size
@@ -37,6 +37,7 @@ public class EnemyBehavior : MonoBehaviour
             }
             else if (colItem.gameObject != gameObject)
             {
+                Debug.Log(colItem.name);
                 direction.x = -direction.x;
             }
           
@@ -68,5 +69,9 @@ public class EnemyBehavior : MonoBehaviour
     {
         CheckHitbox();
         ridgidBody.velocity = direction * speed;
+
+
+        Vector3 gravity = Physics.gravity.y * gravityScale * Vector3.up;
+        ridgidBody.AddForce(gravity, ForceMode.Acceleration);
     }
 }

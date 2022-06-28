@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float groundRadiusCheck = 0.3f;
     public LayerMask layers;
     public float gravityMultiplier = 4f;
+
+    public Transform model;
+
     CharacterController charControl;
     float moveInput;
     bool jumpInput = false;
@@ -26,14 +29,21 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         jumpInput = Input.GetButton("Jump");
+
+        Move();
     }
-
-
-
-    private void FixedUpdate () 
+    void Move()
     {
-
         currentVelocity.x = moveInput * MovementSpeed ;
+
+        //Turn player
+        if(moveInput > 0)
+        {
+            model.rotation = Quaternion.Euler(0,-90,0);
+        }else if(moveInput < 0)
+        {
+             model.rotation = Quaternion.Euler(0,90,0);
+        }
 
         if(charControl.isGrounded)
             currentVelocity.y = 0;
